@@ -1,0 +1,67 @@
+---
+title       : Simple Analysis on Michelson Speed of Light Data
+subtitle    : A project fot Developing Data Products course on Coursera
+author      : mulate43
+job         : Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## The data
+
+### Description
+
+A classical data of Michelson (but not this one with Morley) on measurements done in 1879 on the speed of light. The data consists of five experiments, each consisting of 20 consecutive 'runs'. The response is the speed of light measurement, suitably coded (km/sec, with 299000 subtracted) ("datsets" package, "morley" data).
+
+### Details
+
+The data is here viewed as a randomized block experiment with 'experiment' and 'run' as the factors. 'run' may also be considered a quantitative variate to account for linear (or polynomial) changes in the measurement over the course of a single experiment ("datsets" package, "morley" data).
+
+---
+
+## Viewing the data
+
+
+```r
+library(datasets)
+data(morley)
+head(morley)
+```
+
+```
+##     Expt Run Speed
+## 001    1   1   850
+## 002    1   2   740
+## 003    1   3   900
+## 004    1   4  1070
+## 005    1   5   930
+## 006    1   6   850
+```
+
+---
+
+## The app
+
+With this app you can explore the fit from different methods and different experiments.
+
+You must choose first the experiment (default is Average which represents the average of the five experiments), then you can choose the type of fit (Simple (y~x), Log (y~log(x)),
+Two level polynomial (y~poly(x,2)), Loess and no fit at all (default is no fit)).
+
+Finally you choose whathever or not you want confidence intervals in the plot (default is yes). Once you define the inputs you can see in the panel the plot and summary tabs.
+
+In the plot tab you can see a plot with the selected fit for experiment or experiments selected and the condifence intervals (or not) according to your choose. In the summary tab you see the summary of the model according to your selections (this include the intercept, slope and Adjusted R^2); when you choose Loess there's no information about the model and when you choose no fit, the summary is calculated with the summary function so you can see the mean, median, etc.
+
+[See the UI.R and server.R](https://github.com/mulate43/Data_products_project)
+
+---
+
+## The app
+
+<div style='text-align: center;'>
+    <img height='560' src='SSApp.png' />
+</div>
+    
